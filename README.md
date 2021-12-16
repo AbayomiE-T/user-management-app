@@ -1,6 +1,6 @@
-# UserManagementApp
+# User Management App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+A simple Angular CRUD app that displays and manages a list of users. Done as part of an application for Quest
 
 ## Development server
 
