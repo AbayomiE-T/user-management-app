@@ -34,7 +34,13 @@ export class UsersComponent implements OnInit, OnDestroy {
     })
   }
 
-  onUserClick(user: User) {
-    this.router.navigate(['/users', user.id]);
+  public onUserClick(id: number) {
+    this.router.navigate(['/users', id]);
+  }
+
+  public deleteUser(id: number) {
+    this.users = this.users.filter((user: User) => user.id !== id);
+
+    this.usersService.deleteUser(id).subscribe();
   }
 }

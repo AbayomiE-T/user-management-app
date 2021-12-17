@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { User } from '../interfaces/IUser'
-import { filter, mergeMap } from 'rxjs/operators';
+import { catchError, filter, mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,13 @@ export class UsersService {
         mergeMap((data: User[]) => data),
         filter((user: User) => user.id === id)
       )
+  }
+
+  public deleteUser(id: number): Observable<unknown> {
+    return this.http.delete<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .pipe(catchError((err) => {
+        console.log(err);
+        return of({});
+      }));
   }
 }
